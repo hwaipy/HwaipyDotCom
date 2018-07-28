@@ -11,7 +11,8 @@ import scala.io.Source
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object WydraApp extends App {
-  val webPort = 20080
+  val DEBUG = System.getProperty("os.name") == "Mac OS X"
+  val webPort = if (DEBUG) 20080 else 80
   val webServer = new Server(webPort)
 
   val servletContext = new ServletContextHandler(ServletContextHandler.SESSIONS)
@@ -33,12 +34,14 @@ object WydraApp extends App {
   webServer.start
   println(s"Wydra WebServer started on port $webPort.")
 
-  val latch = new CountDownLatch(1)
-  Future {
-    Source.stdin.getLines.filter(line => line.toLowerCase == "q").next
-    latch.countDown
+  if (DEBUG) {
+    val latch = new CountDownLatch(1)
+    Future {
+      Source.stdin.getLines.filter(line => line.toLowerCase == "q").next
+      latch.countDown
+    }
+    latch.await(12, TimeUnit.HOURS)
+    println("Stoping Wydra WebServer...")
+    webServer.stop
   }
-  latch.await(12, TimeUnit.HOURS)
-  println("Stoping Wydra WebServer...")
-  webServer.stop
 }
