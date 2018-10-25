@@ -7,4 +7,5 @@ $(document).ready(function () {
     document.getElementById('XL').innerHTML = "<p>Xinglong</p><img src=\"/wydra/weathers?lon=117.577&lat=40.396&station=XL&seed=" + dateString + "\"/>"
     document.getElementById('LJ').innerHTML = "<p>Lijiang</p><img src=\"/wydra/weathers?lon=100.029&lat=26.694&station=LJ&seed=" + dateString + "\"/>"
     document.getElementById('SH').innerHTML = "<p>Shanghai</p><img src=\"/wydra/weathers?lon=121.542&lat=31.126&station=SH&seed=" + dateString + "\"/>"
+    document.getElementById('DL').innerHTML = "<p>Dalian</p><img src=\"/wydra/weathers?lon=121.600&lat=38.900&station=DL&seed=" + dateString + "\"/>"
 });
