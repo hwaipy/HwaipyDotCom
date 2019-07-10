@@ -21,7 +21,9 @@ class WeatherServlet extends AsyncHttpServlet {
     val lon = req.getParameter("lon")
     val lat = req.getParameter("lat")
     val stationName = req.getParameter("station")
-    val originalImage = ImageIO.read(new URL(s"http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&lang=zh-CN&ac=0&unit=metric&tzshift=0&nsukey=UZeWmez8Mq1FslMOuZqryuxKA5OtNkB2G7RdW%2B8mY8RzT4M0hYjx8zvKtMl7yx6gaSdAUs8Grv9yWKqMqR1D4EYbV6WXVzhQu3Xycw6kC6BaKdVVgO5TjFAJbskoV14q6IH3smbe6RFf7Lb2Dq6P0r9y5b%2FN7YYCnKgFP6gme7uxEbEmy8VEYyPmwOphHT8rLLVbrU9ifWkDbSKy97XCGA%3D%3D"))
+    val zshift = req.getParameter("zshift")
+    println(zshift)
+    val originalImage = ImageIO.read(new URL(s"http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&lang=zh-CN&ac=0&unit=metric&tzshift=${zshift}&nsukey=UZeWmez8Mq1FslMOuZqryuxKA5OtNkB2G7RdW%2B8mY8RzT4M0hYjx8zvKtMl7yx6gaSdAUs8Grv9yWKqMqR1D4EYbV6WXVzhQu3Xycw6kC6BaKdVVgO5TjFAJbskoV14q6IH3smbe6RFf7Lb2Dq6P0r9y5b%2FN7YYCnKgFP6gme7uxEbEmy8VEYyPmwOphHT8rLLVbrU9ifWkDbSKy97XCGA%3D%3D"))
 
     val image = new BufferedImage(originalImage.getWidth, originalImage.getHeight, BufferedImage.TYPE_INT_ARGB)
     val g2 = image.getGraphics.asInstanceOf[Graphics2D]
